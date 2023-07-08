@@ -1,6 +1,0 @@
-[submodule "turtlebot3_simulations"]
-	path = turtlebot3_simulations
-	url = https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
-[submodule "ar_track_alvar"]
-	path = ar_track_alvar
-	url = https://github.com/ros-perception/ar_track_alvar.git
