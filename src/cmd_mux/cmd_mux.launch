@@ -1,0 +1,7 @@
+<launch>
+  <!-- Start cmd_mux node -->
+  <node name="cmd_mux" pkg="cmd_mux" type="cmd_mux" output="screen">
+    <remap from="cmd_local" to="/cmd_local"/>
+    <remap from="cmd_web" to="/cmd_web"/>
+  </node>
+</launch>

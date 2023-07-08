@@ -1,0 +1,6 @@
+[submodule "src/turtlebot3_simulations"]
+	path = src/turtlebot3_simulations
+	url = https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+[submodule "src/ar_track_alvar"]
+	path = src/ar_track_alvar
+	url = https://github.com/ros-perception/ar_track_alvar/tree/noetic-devel
