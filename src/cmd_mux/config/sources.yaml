@@ -1,0 +1,5 @@
+sources:
+	-name:"cmd_local"
+	 priority: 1
+	-name:"cmd_web"
+	 priority: 2

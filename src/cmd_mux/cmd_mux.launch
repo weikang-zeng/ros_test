@@ -1,7 +1,9 @@
 <launch>
   <!-- Start cmd_mux node -->
   <node name="cmd_mux" pkg="cmd_mux" type="cmd_mux" output="screen">
-    <remap from="cmd_local" to="/cmd_local"/>
-    <remap from="cmd_web" to="/cmd_web"/>
+  <rosparam param="sources">[{name: 'cmd_local', priority: 1}, {name: 'cmd_web', priority: 2}]</rosparam>
+    <!--param name="sources" type="yaml" value="$(find cmd_mux)/config/sources.yaml"/-->
+    <!--remap from="cmd_local" to="/cmd_local"/-->
+    <!--rema>p from="cmd_web" to="/cmd_web"/-->
   </node>
 </launch>

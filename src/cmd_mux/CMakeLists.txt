@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   std_msgs
+  std_srvs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -54,8 +55,9 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
+#add_service_files(
 #   FILES
+#   ChangeControlSource.srv
 #   Service1.srv
 #   Service2.srv
 # )
@@ -68,10 +70,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
+#generate_messages(
 #   DEPENDENCIES
-#   geometry_msgs#   std_msgs
-# )
+   #geometry_msgs   
+   #std_msgs
+ #)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -107,6 +110,7 @@ catkin_package(
 #  LIBRARIES cmd_mux
 #  CATKIN_DEPENDS geometry_msgs roscpp std_msgs
 #  DEPENDS system_lib
+#CATKIN_DEPENDS message_runtime
 )
 
 ###########

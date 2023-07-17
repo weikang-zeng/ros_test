@@ -1,0 +1,102 @@
+#!/usr/bin/env python
+# This line ensures that the interpreter used is the first one on your environment's $PATH. Every Python file needs to start with this line at the top.
+
+import rospy 
+# imports the rospy module, which is a Python library for ROS.
+from geometry_msgs.msg import Twist 
+# imports the Twist message from the geometry_msgs package, which is a common message type used in ROS for representing velocity.
+import paho.mqtt.client as mqtt 
+# imports the MQTT client library from the Paho project.
+import json 
+# imports the json module, which provides functions for working with JSON data.
+from pynput.keyboard import Key, Listener 
+# imports the Key and Listener classes from the pynput.keyboard module, which is a library for controlling and monitoring input devices.
+
+speed = Twist()
+# initializes a new Twist message instance that will be used to represent the robot's speed.
+
+def on_press(key):
+    # This function is called whenever a key is pressed. The pressed key is passed to the function as an argument.
+
+    if key == Key.up:
+        # If the up arrow key is pressed, set the linear speed to 0.5 and the angular speed to 0.
+
+        speed.linear.x = 0.5
+        speed.angular.z = 0
+
+    elif key == Key.down:
+        # If the down arrow key is pressed, set the linear speed to -0.5 and the angular speed to 0.
+
+        speed.linear.x = -0.5
+        speed.angular.z = 0
+
+    elif key == Key.right:
+        # If the right arrow key is pressed, set the angular speed to -0.5 and the linear speed to 0.
+
+        speed.angular.z = -0.5
+        speed.linear.x = 0
+
+    elif key == Key.left:
+        # If the left arrow key is pressed, set the angular speed to 0.5 and the linear speed to 0.
+
+        speed.angular.z = 0.5
+        speed.linear.x = 0
+
+    else:
+        # If any other key is pressed, set both the linear and angular speeds to 0.
+
+        speed.linear.x = 0
+        speed.angular.z = 0
+
+    client.publish("cmd_vel", json.dumps({"linear": speed.linear.x, "angular": speed.angular.z}))
+    # publishes the current speed to the cmd_vel MQTT topic. The speed is first converted to a JSON string before being published.
+
+def on_release(key):
+    # This function is called whenever a key is released. The released key is passed to the function as an argument.
+
+    if key == Key.esc:
+        # If the escape key is released, stop the listener.
+
+        return False
+
+def on_connect(client, userdata, flags, rc):
+    # This function is called whenever the MQTT client successfully connects to the MQTT broker.
+
+    print("Connected with result code "+str(rc))
+
+
+def on_disconnect(client, userdata, rc):
+    # This function is called whenever the MQTT client disconnects from the MQTT broker.
+
+    if rc != 0:
+        print("Unexpected disconnection.")
+
+
+if __name__ == "__main__":
+
+
+    client = mqtt.Client()
+    # initializes a new MQTT client instance.
+
+    client.on_connect = on_connect
+    # sets the function to be called when the client connects to the broker.
+
+    client.on_disconnect = on_disconnect
+    # sets the function to be called when the client disconnects from the broker.
+
+    client.connect("localhost", 1883, 60)
+    # connects the client to the MQTT broker running on localhost at port 1883, with a keepalive interval of 60 seconds.
+
+    client.loop_start()
+    # starts the MQTT client's network loop in a new thread.
+
+    with Listener(on_press=on_press, on_release=on_release) as listener:
+        # creates a new key listener and starts listening for key events.
+
+        listener.join()
+        # blocks the program from exiting until the listener stops.
+
+    client.loop_stop()
+
+
+    client.disconnect()
