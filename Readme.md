@@ -1,6 +1,6 @@
 This is a skill test project at the request of iFollow
 ====
-![](img/iFollow-OFFICIEL-PNG.png width="375")
+![](img/iFollow-OFFICIEL-PNG.png)
 
 |Author|zeng|
 |---|---
