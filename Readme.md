@@ -1,6 +1,6 @@
 This is a skill test project at the request of iFollow
 ====
-![](img/iFollow-OFFICIEL-PNG.png)
+![](img/iFollow-OFFICIEL-PNG.png= 100x200)
 
 |Author|zeng|
 |---|---
@@ -17,7 +17,7 @@ This is a skill test project at the request of iFollow
 ## Mise en place de l'environnement de test
 ---
 ![](img/robotis_emanual_logo.png)
-**recommended to use this site web to get started**[emanual.robotis](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
+**recommended to use this site web to get started** [emanual.robotis](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
 
 Following the instructions you can set up your simulation platform or manipulate the robot
 
@@ -61,7 +61,7 @@ Version1 is a simple example：cmd_mux (version1).cpp
 
 Considering the stability of the multiplexer, you can optimize the subscriber and publisher settings, add priorities for different topics, as well as locking mechanisms and diagnostic information.
 
-**recommended to use this github to learn the structure of a multiplexer**[twist_mux](https://github.com/ros-teleop/twist_mux)
+**recommended to use this github to learn the structure of a multiplexer** [twist_mux](https://github.com/ros-teleop/twist_mux)
 
 The original idea was to add services and yaml files to the multiplexer to implement a prioritization system and handle different control sources. However, there were some unexpected obstacles to adding services. For example, using message_generation as a dependency to generate the corresponding header file for the srv file.
 
@@ -110,11 +110,11 @@ Finally it implements the command to publish the linear and angular velocities v
 
 During debugging, I forgot that python's scripting requirements require the use of keyboard arrow keys to issue speed commands, because at the beginning I tested this by sending a simple message to the subscription side as a test. It's easy to implement though, use the getch library and then define the corresponding speed commands for each arrow key under keypress and then publish them.
 
-**mqtt_subscriber_node.cpp**:The main thing this program does is to receive messages on an MQTT topic, convert them to ROS Twist messages, and post them to the /cmd_web topic. In this process, it uses regular expressions to parse the payload of the received MQTT messages.
+**mqtt_subscriber_node.cpp**: The main thing this program does is to receive messages on an MQTT topic, convert them to ROS Twist messages, and post them to the /cmd_web topic. In this process, it uses regular expressions to parse the payload of the received MQTT messages.
 
-**mqtt_publisher.py**:This is a python script for letting users specify linear and  angular velocities and send velocity commands via MQTT
+**mqtt_publisher.py**: This is a python script for letting users specify linear and  angular velocities and send velocity commands via MQTT
 
-**old_version_test_python_code.py**:This is a release program that was written in the initial phase as required, in the first round of testing there was a problem with the MQTT link, so other program tests were written to debug MQTT. This was to be used after the debugging was complete, but I forgot about it. 
+**old_version_test_python_code.py**: This is a release program that was written in the initial phase as required, in the first round of testing there was a problem with the MQTT link, so other program tests were written to debug MQTT. This was to be used after the debugging was complete, but I forgot about it. 
 
 ![](img/showcase4.gif)
 
