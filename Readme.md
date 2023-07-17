@@ -54,7 +54,7 @@ Then we can let the robot navigate to the specified place
 
 **Configuration and commissioning time: 1h**
 
-###Multiplexeur
+### Multiplexeur
 ---
 Regarding multiplexers, it can be achieved using simple topic subscription and publishing, but it is not stable.
 Version1 is a simple example：cmd_mux (version1).cpp
@@ -98,10 +98,11 @@ Observe published messages at another console
 
 ![](img/showcase3.gif)
 
-**Configuration and commissioning time: 2h for the first version**
-**Coding time: 3~5h and commissioning and debugging time: 10~15h**
+**Configuration and commissioning time**: **2h for the first version**
 
-###Teleoperation a distance
+**Coding time: 3~5h and commissioning and debugging time**: **10~15h**
+
+### Teleoperation a distance
 ---
 For the mqtt part, I developed a ros node in C++ that uses the mosquitto package to subscribe to mqtt topics. For the publisher side I used python's paho library for the customer side.
 
@@ -119,7 +120,7 @@ During debugging, I forgot that python's scripting requirements require the use 
 
 
 **Coding time: 8h and commissioning and debugging time: 20h**
-###Envoi de Goal determine par un tag visuel
+### Envoi de Goal determine par un tag visuel
 ---
 
 Before using the camera to recognize April tags, you need to calibrate the camera and make appropriate changes to the launch file corresponding to apriltag_ros, such as the corresponding PC camera topic, and the image topic
