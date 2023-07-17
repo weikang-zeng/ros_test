@@ -14,7 +14,7 @@ This is a skill test project at the request of iFollow
 * [Teleoperation a distance]
 * [Envoi de Goal determine par un tag visuel]
 
-### Mise en place de l'environnement de test
+## Mise en place de l'environnement de test
 ---
 ![](img/robotis_emanual_logo.png)
 **recommended to use this site web to get started**[emanual.robotis](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
@@ -54,7 +54,7 @@ Then we can let the robot navigate to the specified place
 
 **Configuration and commissioning time: 1h**
 
-### Multiplexeur
+## Multiplexeur
 ---
 Regarding multiplexers, it can be achieved using simple topic subscription and publishing, but it is not stable.
 Version1 is a simple example：cmd_mux (version1).cpp
@@ -102,7 +102,7 @@ Observe published messages at another console
 
 **Coding time: 3~5h and commissioning and debugging time**: **10~15h**
 
-### Teleoperation a distance
+## Teleoperation a distance
 ---
 For the mqtt part, I developed a ros node in C++ that uses the mosquitto package to subscribe to mqtt topics. For the publisher side I used python's paho library for the customer side.
 
@@ -110,17 +110,17 @@ Finally it implements the command to publish the linear and angular velocities v
 
 During debugging, I forgot that python's scripting requirements require the use of keyboard arrow keys to issue speed commands, because at the beginning I tested this by sending a simple message to the subscription side as a test. It's easy to implement though, use the getch library and then define the corresponding speed commands for each arrow key under keypress and then publish them.
 
-**mqtt_subscriber_node.cpp:**The main thing this program does is to receive messages on an MQTT topic, convert them to ROS Twist messages, and post them to the /cmd_web topic. In this process, it uses regular expressions to parse the payload of the received MQTT messages.
+**mqtt_subscriber_node.cpp**:The main thing this program does is to receive messages on an MQTT topic, convert them to ROS Twist messages, and post them to the /cmd_web topic. In this process, it uses regular expressions to parse the payload of the received MQTT messages.
 
-**mqtt_publisher.py:**This is a python script for letting users specify linear and  angular velocities and send velocity commands via MQTT
+**mqtt_publisher.py**:This is a python script for letting users specify linear and  angular velocities and send velocity commands via MQTT
 
-**old_version_test_python_code.py:**This is a release program that was written in the initial phase as required, in the first round of testing there was a problem with the MQTT link, so other program tests were written to debug MQTT. This was to be used after the debugging was complete, but I forgot about it. 
+**old_version_test_python_code.py**:This is a release program that was written in the initial phase as required, in the first round of testing there was a problem with the MQTT link, so other program tests were written to debug MQTT. This was to be used after the debugging was complete, but I forgot about it. 
 
 ![](img/showcase4.gif)
 
 
 **Coding time: 8h and commissioning and debugging time: 20h**
-### Envoi de Goal determine par un tag visuel
+## Envoi de Goal determine par un tag visuel
 ---
 
 Before using the camera to recognize April tags, you need to calibrate the camera and make appropriate changes to the launch file corresponding to apriltag_ros, such as the corresponding PC camera topic, and the image topic
