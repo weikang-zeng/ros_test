@@ -17,21 +17,21 @@ This is a skill test project at the request of iFollow
 ### Mise en place de l'environnement de test
 ---
 ![](img/robotis_emanual_logo.png)
-**recommended to use this site web to get started**[link](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
+**recommended to use this site web to get started**[emanual.robotis](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/)
 
 Following the instructions you can set up your simulation platform or manipulate the robot
 
-Speciify the model of the robot you want to simulate before performin the simulation
-'Export TURTLEBOT3_MODEL=burger'
+Specify the model of the robot you want to simulate before performin the simulation
+`Export TURTLEBOT3_MODEL=burger`
 
 Run an esisting map
-'roslaunch turtlebot3_gazebo turtlebot3_world'
+`roslaunch turtlebot3_gazebo turtlebot3_world`
 
 Run SLAM Node
-'roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping'
+`roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping`
 
 Run Teleoperation Node
-'roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch'
+`roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch`
 
 Scanning out and storing environmental maps using keypad controls
 
@@ -39,11 +39,11 @@ Scanning out and storing environmental maps using keypad controls
 
 Save the map for the navigation after
 
-'rosrun map_saver map_saver -f ~/map'
+`rosrun map_saver map_saver -f ~/map`
 
 Run Navigation Node and load the map
 
-'roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml'
+`roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml`
 
 Estimate Initial Pose-Align the robot's inital position in the map
 
@@ -60,21 +60,21 @@ Version1 is a simple example：cmd_mux (version1).cpp
 
 Considering the stability of the multiplexer, you can optimize the subscriber and publisher settings, add priorities for different topics, as well as locking mechanisms and diagnostic information.
 
-**recommended to use this github to learn the structure of a multiplexer**[link](https://github.com/ros-teleop/twist_mux)
+**recommended to use this github to learn the structure of a multiplexer**[twist_mux](https://github.com/ros-teleop/twist_mux)
 
 The original idea was to add services and yaml files to the multiplexer to implement a prioritization system and handle different control sources. However, there were some unexpected obstacles to adding services. For example, using message_generation as a dependency to generate the corresponding header file for the srv file.
 
 It was eventually decided to change the control source directly in the callback instead of through a service call. Change source_change_srv to type ros::Subscriber and subscribe to the new topic (/control_source)
 
 You need to specify the source priority before using cmd_mux
-'rosparam set sources "[{name: 'cmd_local', priority: 1}, {name: 'cmd_web', priority: 2}]"'
+`rosparam set sources "[{name: 'cmd_local', priority: 1}, {name: 'cmd_web', priority: 2}]"`
 
 and, if necessary, switch the control source
-'rostopic pub /control_source std_msgs/String "data: 'cmd_local' ou 'cmd_web"'
+`rostopic pub /control_source std_msgs/String "data: 'cmd_local' ou 'cmd_web"`
 
 Use the following commands to post speed information on different topics, and with option -r 3 to post information continuously
 
-'rostopic pub /cmd_local geometry_msgs/Twist "linear:
+`rostopic pub /cmd_local geometry_msgs/Twist "linear:
   x: 0.2
   y: 0.0
   z: 0.0
@@ -90,10 +90,10 @@ rostopic pub /cmd_web geometry_msgs/Twist "linear:
 angular:
   x: 0.0
   y: 0.0
-  z: 0.0"'
+  z: 0.0"`
 
 Observe published messages at another console  
-'rostopic echo /cmd_vel'
+`rostopic echo /cmd_vel`
 
 ![](img/showcase3.gif)
 
@@ -129,9 +129,9 @@ Don't forget to set the type of April tags to be recognized in the **settings.ya
 
 After finishing calibration and setup, you can run the following commands to test the results of ARtag detection
 
-'roslaunch usb_cam usb_cam-test.launch'
-'roslaunch apriltag_ros continuous_detection.launch'
-'rqt_image_view"
+`roslaunch usb_cam usb_cam-test.launch`
+`roslaunch apriltag_ros continuous_detection.launch`
+`rqt_image_view`
 
 The tag I received should be tag36h11, which is recognized in the camera as April tags with IDs 20, 21, and 22 respectively, and contains no additional coordinate information.This proves that apriltag_ros is a proper package.
 
